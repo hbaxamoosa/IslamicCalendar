@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">IslamicCalendar</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="hijri_months">
+        <item>Muharram</item>
+        <item>Safar</item>
+        <item>Rabi Al-Awwal</item>
+        <item>Rabi Al-Thani</item>
+        <item>Jumada Al-Awwal</item>
+        <item>Jumada Al-Thani</item>
+        <item>Rajab</item>
+        <item>Shaban</item>
+        <item>Ramadan</item>
+        <item>Shawwal</item>
+        <item>Zul-Qa'dah</item>
+        <item>Zul-Hijjah</item>
+    </string-array>
+</resources>
