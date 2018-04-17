@@ -1,9 +1,8 @@
 package com.boxofm.islamiccalendar;
 
-import java.util.Calendar;
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,40 +10,41 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private static TextView textView;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textView = (TextView) findViewById(R.id.IslamicDate);
-        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+        textView = findViewById(R.id.IslamicDate);
+        DatePicker datePicker = findViewById(R.id.datePicker);
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, month +1, day);
+        returnDate(year, month + 1, day);
         datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                showDate(year, monthOfYear+1, dayOfMonth);
+                returnDate(year, monthOfYear + 1, dayOfMonth);
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,16 +56,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static void showDate(int year, int month, int day) {
-        textView.setText(new StringBuilder().append("JD: ").append(day).append("/")
-                .append(month).append("/").append(year));
-        Log.v(TAG, String.valueOf(Utility.GetJulianDate(Calendar.getInstance())));
-        Log.v(TAG, String.valueOf(Utility.dateToJulian(Calendar.getInstance())));
-        Log.v(TAG, String.valueOf(Utility.jd_to_islamic(Utility.GetJulianDate(Calendar.getInstance()))));
+    private void returnDate(int year, int monthOfYear, int dayOfMonth) {
+        textView.setText(new StringBuilder().append("JD: ").append(dayOfMonth).append("/")
+                .append(monthOfYear).append("/").append(year));
     }
 
     public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
+
+        Context context;
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -74,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
+            context = getActivity();
 
             // Create a new instance of DatePickerDialog and return it
             return new DatePickerDialog(getActivity(), this, year, month, day);
@@ -82,11 +82,19 @@ public class MainActivity extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int day) {
             Resources resources = getResources();
             String [] months = resources.getStringArray(R.array.hijri_months);
-            Log.v(TAG, "number of months is: " + months.length);
-            Log.v(TAG, "number of months is: " + months[month]);
+            // Log.v(TAG, "number of months is: " + months.length);
+            // Log.v(TAG, "number of months is: " + months[month]);
 
             // Do something with the date chosen by the user
-            MainActivity.showDate(year, month, day);
+            if (context != null) {
+                // Log.v(TAG, "onDateSet: context != null");
+                // myListener.returnDate(year, month, day);
+            }
+
+        }
+
+        public interface myListener {
+            void returnDate(int year, int month, int day);
         }
     }
 
