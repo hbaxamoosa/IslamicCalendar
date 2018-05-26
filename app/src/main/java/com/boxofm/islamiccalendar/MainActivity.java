@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        returnDate(year, month + 1, day);
+        returnDate(year, month, day);
         datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -57,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void returnDate(int year, int monthOfYear, int dayOfMonth) {
+        double jd_date = Utility.gregorian_to_jd(year, monthOfYear, dayOfMonth);
+        Log.v(TAG, "JD: " + jd_date);
+        double[] islamic_date = Utility.jd_to_islamic(jd_date);
+        String[] islamicMonths = getResources().getStringArray(R.array.hijri_months);
+        Log.v(TAG, "Islamic: " + "year is " + islamic_date[0] + " month is " + islamicMonths[(int) islamic_date[1]] + " day is " + islamic_date[2]);
         textView.setText(new StringBuilder().append("JD: ").append(dayOfMonth).append("/")
                 .append(monthOfYear).append("/").append(year));
     }
