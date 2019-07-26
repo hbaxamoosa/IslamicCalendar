@@ -1,5 +1,6 @@
 package com.boxofm.islamiccalendar;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -131,14 +133,15 @@ public class MainActivity extends AppCompatActivity {
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
+            return new DatePickerDialog(Objects.requireNonNull(getActivity()), this, year, month, day);
         }
 
+        @SuppressLint("DefaultLocale")
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             // Do something with the date chosen by the user
-            TextView date = getActivity().findViewById(R.id.IslamicDate);
-            date.setText("Year: " + view.getYear() + " Month: " + view.getMonth() + " Day: " + view.getDayOfMonth());
+            TextView date = Objects.requireNonNull(getActivity()).findViewById(R.id.IslamicDate);
+            date.setText(String.format("Year: %d Month: %d Day: %d", view.getYear(), view.getMonth(), view.getDayOfMonth()));
         }
     }
 }
