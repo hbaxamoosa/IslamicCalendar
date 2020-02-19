@@ -1,6 +1,7 @@
 package com.boxofm.islamiccalendar;
 
 import android.util.Log;
+
 import java.util.Calendar;
 
 /**
@@ -152,7 +153,7 @@ public class Utility {
             "ath-thalatha'", "al-'arb`a'",
             "al-khamis", "al-jum`a", "as-sabt"};
     String[] ISLAMIC_MONTHS = new String[] {"Muharram", "Safar",
-            "Rabi`al-Awwal", "Rabi`al-Awwal",
+            "Rabi`al-Awwal", "Rabi`al-Akhar",
             "Jumada l-Ula", "Jumada t-Tania",
             "Rajab", "Sha`ban",
             "Ramadan", "Shawwal",
