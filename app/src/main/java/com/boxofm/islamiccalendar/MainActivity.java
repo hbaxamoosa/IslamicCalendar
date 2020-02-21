@@ -73,9 +73,7 @@ public class MainActivity extends AppCompatActivity {
         Log.v(TAG, "TESTING Islamic: " + "year is " + islamic_date[0] + " month is " + islamicMonths[(int) (islamic_date[1] - 1)] + " day is " + islamic_date[2]);
 
 
-        Calendar MishaBirthDay = Calendar.getInstance(Locale.US);
-        MishaBirthDay.set(2010, 3, 20);
-        Log.v(TAG, "TESTING date: " + MishaBirthDay);
+
         IslamicCalendar islamic = new IslamicCalendar();
         //islamic.set(2010, 3, 20);
         islamic.setCalculationType(ISLAMIC);
@@ -85,14 +83,29 @@ public class MainActivity extends AppCompatActivity {
         Log.v(TAG, "TESTING islamic.get(Calendar.MONTH): " + islamic.get(Calendar.MONTH));
         Log.v(TAG, "TESTING islamic.get(Calendar.DAY_OF_MONTH): " + islamic.get(Calendar.DAY_OF_MONTH));
 
-        IslamicCalendar islamic2 = new IslamicCalendar();
-        islamic2.setTime(MishaBirthDay.getTime());
-        islamic2.setCalculationType(ISLAMIC);
-        Log.v(TAG, "TESTING islamic2.getType(): " + islamic2.getType());
-        Log.v(TAG, "TESTING islamic2.getTime(): " + islamic2.getTime());
-        Log.v(TAG, "TESTING islamic2.get(Calendar.YEAR): " + islamic2.get(Calendar.YEAR));
-        Log.v(TAG, "TESTING islamic2.get(Calendar.MONTH): " + islamic2.get(Calendar.MONTH));
-        Log.v(TAG, "TESTING islamic2.get(Calendar.DAY_OF_MONTH): " + islamic2.get(Calendar.DAY_OF_MONTH));
+        Calendar MishaBirthDay = Calendar.getInstance(Locale.US);
+        MishaBirthDay.set(2010, 3, 20);
+        Log.v(TAG, "TESTING date: " + MishaBirthDay);
+        IslamicCalendar birthday_misha = new IslamicCalendar();
+        birthday_misha.setTime(MishaBirthDay.getTime());
+        birthday_misha.setCalculationType(ISLAMIC);
+        Log.v(TAG, "TESTING birthday_misha.getType(): " + birthday_misha.getType());
+        Log.v(TAG, "TESTING birthday_misha.getTime(): " + birthday_misha.getTime());
+        Log.v(TAG, "TESTING birthday_misha.get(Calendar.YEAR): " + birthday_misha.get(Calendar.YEAR));
+        Log.v(TAG, "TESTING birthday_misha.get(Calendar.MONTH): " + birthday_misha.get(Calendar.MONTH));
+        Log.v(TAG, "TESTING birthday_misha.get(Calendar.DAY_OF_MONTH): " + birthday_misha.get(Calendar.DAY_OF_MONTH));
+
+        Calendar YasmeenBirthDay = Calendar.getInstance(Locale.US);
+        YasmeenBirthDay.set(1956, 2, 8);
+        Log.v(TAG, "TESTING date: " + YasmeenBirthDay);
+        IslamicCalendar birthday_yasmeen = new IslamicCalendar();
+        birthday_yasmeen.setTime(YasmeenBirthDay.getTime());
+        birthday_yasmeen.setCalculationType(ISLAMIC);
+        Log.v(TAG, "TESTING birthday_yasmeen.getType(): " + birthday_yasmeen.getType());
+        Log.v(TAG, "TESTING birthday_yasmeen.getTime(): " + birthday_yasmeen.getTime());
+        Log.v(TAG, "TESTING birthday_yasmeen.get(Calendar.YEAR): " + birthday_yasmeen.get(Calendar.YEAR));
+        Log.v(TAG, "TESTING birthday_yasmeen.get(Calendar.MONTH): " + islamicMonths[(birthday_yasmeen.get(Calendar.MONTH) - 1)]);
+        Log.v(TAG, "TESTING birthday_yasmeen.get(Calendar.DAY_OF_MONTH): " + birthday_yasmeen.get(Calendar.DAY_OF_MONTH));
 
         double meghana_jd_date = Utility.gregorian_to_jd(1980, 12, 19); // 13 Safar-Ul-Muzaffar
         Log.v(TAG, "TESTING meghana JD: " + meghana_jd_date);
@@ -107,22 +120,22 @@ public class MainActivity extends AppCompatActivity {
         double hasnain_jd_date = Utility.gregorian_to_jd(1982, 02, 18); // 24 Rabi-Ul-Akhar
         Log.v(TAG, "TESTING hasnain JD: " + hasnain_jd_date);
         double[] hasnain_islamic_date = Utility.jd_to_islamic(hasnain_jd_date);
-        Log.v(TAG, "TESTING hasnain Islamic: " + "year is " + hasnain_islamic_date[0] + " month is " + islamicMonths[(int) hasnain_islamic_date[1]] + " day is " + hasnain_islamic_date[2]);
+        Log.v(TAG, "TESTING hasnain Islamic: " + "year is " + hasnain_islamic_date[0] + " month is " + islamicMonths[(int) (hasnain_islamic_date[1] - 1)] + " day is " + hasnain_islamic_date[2]);
 
         double haroun_jd_date = Utility.gregorian_to_jd(2013, 05, 30); // 21 Rajab-Ul-Asab
         Log.v(TAG, "TESTING haroun JD: " + haroun_jd_date);
         double[] haroun_islamic_date = Utility.jd_to_islamic(haroun_jd_date);
-        Log.v(TAG, "TESTING haroun Islamic: " + "year is " + haroun_islamic_date[0] + " month is " + islamicMonths[(int) haroun_islamic_date[1]] + " day is " + haroun_islamic_date[2]);
+        Log.v(TAG, "TESTING haroun Islamic: " + "year is " + haroun_islamic_date[0] + " month is " + islamicMonths[(int) (haroun_islamic_date[1] - 1)] + " day is " + haroun_islamic_date[2]);
 
         double shabbir_jd_date = Utility.gregorian_to_jd(1945, 04, 13); // 01 Jama-Dil-Ula
         Log.v(TAG, "TESTING Shabbir JD: " + shabbir_jd_date);
         double[] shabbir_islamic_date = Utility.jd_to_islamic(shabbir_jd_date);
-        Log.v(TAG, "TESTING Shabbir Islamic: " + "year is " + shabbir_islamic_date[0] + " month is " + islamicMonths[(int) shabbir_islamic_date[1]] + " day is " + shabbir_islamic_date[2]);
+        Log.v(TAG, "TESTING Shabbir Islamic: " + "year is " + shabbir_islamic_date[0] + " month is " + islamicMonths[(int) (shabbir_islamic_date[1] - 1)] + " day is " + shabbir_islamic_date[2]);
 
         double yasmeen_jd_date = Utility.gregorian_to_jd(1956, 02, 8); // 26 Jama-Dil-Ukhra
         Log.v(TAG, "TESTING Yasmeen JD: " + yasmeen_jd_date);
         double[] yasmeen_islamic_date = Utility.jd_to_islamic(yasmeen_jd_date);
-        Log.v(TAG, "TESTING Yasmeen Islamic: " + "year is " + yasmeen_islamic_date[0] + " month is " + islamicMonths[(int) yasmeen_islamic_date[1]] + " day is " + yasmeen_islamic_date[2]);
+        Log.v(TAG, "TESTING Yasmeen Islamic: " + "year is " + yasmeen_islamic_date[0] + " month is " + islamicMonths[(int) (yasmeen_islamic_date[1] - 1)] + " day is " + yasmeen_islamic_date[2]);
 
         textView.setText(new StringBuilder().append("JD: ").append(dayOfMonth).append("/")
                 .append(monthOfYear).append("/").append(year));
